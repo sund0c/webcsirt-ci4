@@ -73,7 +73,7 @@ class Guides extends BaseController
                 'min_length' => 'Deskripsi minimal 30 karakter.',
             ],
             'file' => [
-                'uploaded' => 'Gambar wajib diunggah.',
+                'uploaded' => 'File PDF wajib diunggah.',
                 'ext_in' => 'Ekstensi file harus PDF.',
                 'max_size' => 'Ukuran gambar maksimal 10MB.'
             ],
@@ -199,6 +199,11 @@ class Guides extends BaseController
             ],
         ];
 
+        if (!$this->validate($validationRules, $validationMessages)) {
+            return redirect()->back()
+                ->withInput()
+                ->with('errors', $this->validator->getErrors());
+        }
         $data = [
             'title'       => $this->request->getPost('title'),
             'description' => $this->request->getPost('description'),

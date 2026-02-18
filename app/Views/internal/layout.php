@@ -30,12 +30,17 @@
                 <a href="/portal-internal-x83fj9/dashboard"
                     class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-700">
                     <!-- Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round"
+                            stroke-linejoin="round"
                             stroke-width="2"
-                            d="M3 3h7v7H3V3zm11 0h7v7h-7V3zM3 14h7v7H3v-7zm11 7v-7h7v7h-7z" />
+                            d="M3 12l9-9 9 9M4 10v10h16V10" />
                     </svg>
+
                     <span>Dashboard</span>
                 </a>
 
@@ -54,12 +59,16 @@
                 <!-- Advisory -->
                 <a href="/portal-internal-x83fj9/advisories"
                     class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5" fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round"
+                            stroke-linejoin="round"
                             stroke-width="2"
-                            d="M12 9v2m0 4h.01M5.07 19h13.86L12 4 5.07 19z" />
+                            d="M12 3l7 4v5c0 5-3 8-7 9-4-1-7-4-7-9V7l7-4z" />
                     </svg>
+
                     <span>Advisory</span>
                 </a>
 
@@ -78,14 +87,58 @@
                 <!-- Guides -->
                 <a href="/portal-internal-x83fj9/guides"
                     class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M7 8h10M7 12h6m-6 4h10M5 4h14v16H5z" />
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2"
+                            d="M12 6v12m0 0c-3-2-6-2-9 0V6c3-2 6-2 9 0m0 12c3-2 6-2 9 0V6c-3-2-6-2-9 0" />
                     </svg>
                     <span>Guides</span>
                 </a>
+
+                <!-- landing -->
+                <a href="/portal-internal-x83fj9/landing"
+                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-700">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="2"
+                            d="M3 4h18v6H3zM3 14h18v6H3z" />
+                    </svg>
+                    <span>Landing Page</span>
+                </a>
+
+                <!-- layanan -->
+                <a href="/portal-internal-x83fj9/services"
+                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-700">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h6v6H4zM14 6h6v6h-6zM4 16h6v6H4zM14 16h6v6h-6z" />
+                    </svg>
+                    <span>Layanan</span>
+                </a>
+
+                <a href="<?= base_url('portal-internal-x83fj9/settings') ?>"
+                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-700">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M11.983 3a1 1 0 011 1v1.06a7.002 7.002 0 012.121.879l.75-.75a1 1 0 011.414 0l1.414 1.414a1 1 0 010 1.414l-.75.75a7.002 7.002 0 01.879 2.121H20a1 1 0 011 1v2a1 1 0 01-1 1h-1.06a7.002 7.002 0 01-.879 2.121l.75.75a1 1 0 010 1.414l-1.414 1.414a1 1 0 01-1.414 0l-.75-.75a7.002 7.002 0 01-2.121.879V20a1 1 0 01-1 1h-2a1 1 0 01-1-1v-1.06a7.002 7.002 0 01-2.121-.879l-.75.75a1 1 0 01-1.414 0L3.343 17.4a1 1 0 010-1.414l.75-.75a7.002 7.002 0 01-.879-2.121H2a1 1 0 01-1-1v-2a1 1 0 011-1h1.06a7.002 7.002 0 01.879-2.121l-.75-.75a1 1 0 010-1.414L4.603 3.343a1 1 0 011.414 0l.75.75a7.002 7.002 0 012.121-.879V4a1 1 0 011-1h2z" />
+                    </svg>
+                    <span>Site Settings</span>
+                </a>
+
 
             </nav>
 

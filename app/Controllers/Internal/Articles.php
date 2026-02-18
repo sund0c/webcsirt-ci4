@@ -473,7 +473,7 @@ class Articles extends BaseController
         return redirect()->to('/portal-internal-x83fj9/articles/trash');
     }
 
-    public function image($filename)
+    public function preview($filename)
     {
         $path = WRITEPATH . 'uploads/articles/' . $filename;
 

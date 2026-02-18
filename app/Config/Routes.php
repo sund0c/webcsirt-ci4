@@ -34,6 +34,7 @@ $routes->group('portal-internal-x83fj9', ['filter' => 'adminauth'], function ($r
     $routes->get('articles/delete/(:num)', 'Internal\Articles::delete/$1');
     $routes->get('articles/trash', 'Internal\Articles::trash');
     $routes->get('articles/restore/(:num)', 'Internal\Articles::restore/$1');
+    $routes->get('articles/preview/(:any)', 'Internal\Articles::preview/$1');
 
     $routes->get('advisories', 'Internal\Advisories::index');
     $routes->get('advisories/create', 'Internal\Advisories::create');
@@ -43,6 +44,7 @@ $routes->group('portal-internal-x83fj9', ['filter' => 'adminauth'], function ($r
     $routes->get('advisories/delete/(:num)', 'Internal\Advisories::delete/$1');
     $routes->get('advisories/trash', 'Internal\Advisories::trash');
     $routes->get('advisories/restore/(:num)', 'Internal\Advisories::restore/$1');
+    $routes->get('advisories/preview/(:any)', 'Internal\Advisories::preview/$1');
 
     $routes->get('pages', 'Internal\Pages::index');
     $routes->get('pages/create', 'Internal\Pages::create');
@@ -63,11 +65,25 @@ $routes->group('portal-internal-x83fj9', ['filter' => 'adminauth'], function ($r
     $routes->get('guides/trash', 'Internal\Guides::trash');
     $routes->get('guides/restore/(:num)', 'Internal\Guides::restore/$1');
     $routes->get('guides/preview/(:num)', 'Internal\Guides::preview/$1');
+
+    $routes->get('landing', 'Internal\LandingSections::index');
+    $routes->get('landing/edit/(:num)', 'Internal\LandingSections::edit/$1');
+    $routes->post('landing/update/(:num)', 'Internal\LandingSections::update/$1');
+    $routes->get('landing/preview/(:any)', 'Internal\LandingSections::preview/$1');
+
+    $routes->get('services', 'Internal\Services::index');
+    $routes->get('services/edit/(:num)', 'Internal\Services::edit/$1');
+    $routes->post('services/update/(:num)', 'Internal\Services::update/$1');
+    $routes->get('services/preview/(:any)', 'Internal\Services::preview/$1');
+
+    $routes->get('settings', 'Internal\SiteSettings::index');
+    $routes->post('settings/update', 'Internal\SiteSettings::update');
+    $routes->get('settings/preview/(:any)', 'Internal\SiteSettings::preview/$1');
 });
 
 
-$routes->get('image/articles/(:any)', 'Internal\Articles::image/$1');
-$routes->get('image/advisories/(:any)', 'Internal\Advisories::image/$1');
+
+
 
 
 

@@ -67,8 +67,11 @@
         <?php if (!empty($article['featured_image'])) : ?>
             <div class="mb-4">
                 <p class="text-sm text-gray-600 mb-2">Gambar Saat Ini:</p>
-                <img src="<?= base_url('image/articles/' . $article['featured_image']) ?>"
-                    class="w-48 rounded-lg shadow">
+                <img src="<?= site_url('portal-internal-x83fj9/articles/preview/' . $article['featured_image']) ?>"
+                    class=" w-48 rounded-lg shadow">
+
+
+
             </div>
         <?php endif ?>
 

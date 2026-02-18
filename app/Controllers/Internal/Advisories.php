@@ -539,7 +539,7 @@ class Advisories extends BaseController
         return redirect()->to('/portal-internal-x83fj9/advisories/trash');
     }
 
-    public function image($filename)
+    public function preview($filename)
     {
         $path = WRITEPATH . 'uploads/advisories/' . $filename;
 

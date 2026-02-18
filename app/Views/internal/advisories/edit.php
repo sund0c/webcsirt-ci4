@@ -72,7 +72,7 @@
         <?php if (!empty($advisory['featured_image'])) : ?>
             <div class="mb-4">
                 <p class="text-sm text-gray-600 mb-2">Gambar Saat Ini:</p>
-                <img src="<?= base_url('image/advisories/' . $advisory['featured_image']) ?>"
+                <img src="<?= site_url('portal-internal-x83fj9/advisories/preview/' . $advisory['featured_image']) ?>"
                     class="w-48 rounded-lg shadow">
             </div>
         <?php endif ?>
