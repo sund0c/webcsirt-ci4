@@ -10,9 +10,8 @@ use CodeIgniter\Router\RouteCollection;
 
 $routes->setAutoRoute(false);
 
-$routes->get('/', function () {
-    return view('public/home', ['title' => 'Beranda']);
-});
+$routes->get('/', 'Public\Home::index');
+
 
 $routes->get('/advisory', 'Advisory::index');
 
