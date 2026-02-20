@@ -62,4 +62,13 @@ class Migrations extends BaseConfig
      * or race conditions during concurrent deployments.
      */
     public bool $lock = false;
+
+    /**
+     * --------------------------------------------------------------------------
+     * Seeder Configuration
+     * --------------------------------------------------------------------------
+     */
+
+    public bool $seed = true;
+    public string $seedName = 'DatabaseSeeder';
 }

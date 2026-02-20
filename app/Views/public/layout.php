@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= esc($title ?? 'CSIRT Provinsi') ?></title>
+    <title>
+        <?= esc($site['site_name']) ?>
+    </title>
     <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
 
 </head>
@@ -14,15 +16,21 @@
     <!-- HEADER -->
     <header class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
 
-            <!-- Logo -->
-            <div>
-                <h1 class="text-lg md:text-xl font-semibold text-blue-800">
-                    CSIRT Provinsi
-                </h1>
-                <p class="text-xs text-gray-500 hidden md:block">
-                    Tim Tanggap Insiden Siber Pemerintah Daerah
-                </p>
+                <!-- Logo -->
+                <img src=" <?= base_url('media/settings/' . esc($site['logo'])) ?>"
+                    class="h-10 w-auto" alt="Logo CSIRT">
+
+                <!-- Nama -->
+                <div>
+                    <h1 class="text-lg font-bold text-gray-800 leading-tight">
+                        <?= esc($site['site_name'] ?? 'BALIPROV CSIRT') ?>
+                    </h1>
+                    <p class="text-sm text-gray-600">
+                        <?= esc($site['site_tagline'] ?? 'BALIPROV CSIRT') ?>
+                    </p>
+                </div>
             </div>
 
             <!-- Desktop Navigation -->
@@ -30,13 +38,15 @@
 
                 <a href="/" class="hover:text-blue-700">Beranda</a>
                 <a href="/tentang" class="hover:text-blue-700">Tentang</a>
-                <a href="/advisory" class="hover:text-blue-700">Advisory</a>
+                <a href="/advisory" class="hover:text-blue-700">Layanan</a>
+                <a href="/advisory" class="hover:text-blue-700">RFC 2350</a>
+                <a href="/advisory" class="hover:text-blue-700">Konstituen</a>
                 <a href="/kontak" class="hover:text-blue-700">Kontak</a>
 
-                <a href="/lapor"
+                <!-- <a href="/lapor"
                     class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
                     Laporkan Insiden
-                </a>
+                </a> -->
             </nav>
 
             <!-- Hamburger (Mobile Only) -->
@@ -67,43 +77,40 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-blue-900 text-white mt-20">
+    <footer class="bg-blue-900 text-white">
         <div class="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8 text-sm">
 
             <div>
                 <h3 class="font-semibold mb-3">Tentang CSIRT</h3>
                 <p class="text-blue-200">
-                    CSIRT Provinsi bertugas dalam penanganan insiden siber,
-                    koordinasi keamanan informasi, dan peningkatan ketahanan siber pemerintah daerah.
+                    BALIPROV-CSIRT adalam Tim TIS Pemprov Bali yang terbentuk Tanggal 8 Maret 2021.
                 </p>
             </div>
 
             <div>
                 <h3 class="font-semibold mb-3">Kontak Resmi</h3>
-                <p>Email: csirt@prov.go.id</p>
-                <p>Hotline: (0361) 123456</p>
-                <p>Jam Operasional: 08.00 – 16.00 WITA</p>
+                <p>Email: <?= esc($site['site_email'] ?? 'BALIPROV CSIRT') ?></p>
+                <p>Telpon: <?= esc($site['site_phone'] ?? 'BALIPROV CSIRT') ?></p>
+                <p>Jam Operasional Kantor: 08.00 – 16.00 WITA</p>
             </div>
 
             <div>
                 <h3 class="font-semibold mb-3">Informasi</h3>
                 <p><a href="/privacy" class="hover:underline">Kebijakan Privasi</a></p>
                 <p><a href="/disclaimer" class="hover:underline">Disclaimer</a></p>
+                <p><a href="/privacy" class="hover:underline">Advisory</a></p>
+                <p><a href="/privacy" class="hover:underline">Panduan Teknis</a></p>
             </div>
 
         </div>
 
         <div class="bg-blue-950 text-center py-4 text-xs text-blue-300">
-            © <?= date('Y') ?> Pemerintah Provinsi. Semua Hak Dilindungi.
+            © <?= date('Y') ?> <?= esc($site['site_name'] ?? 'BALIPROV CSIRT') ?>
         </div>
     </footer>
 
-    <script>
-        document.getElementById('menuBtn').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
-        });
-    </script>
+    <script src="<?= base_url('assets/js/app.js') ?>"></script>
+
 
 
 </body>

@@ -11,7 +11,7 @@ $error = session('errors.' . $name);
 
     <input type="file"
         name="<?= esc($name) ?>"
-        accept="image/jpeg,image/png,.jpg,.jpeg,.png"
+        accept="image/jpeg,image/png,.jpg,.jpeg,.png,.ico"
         value="<?= old($name, $value ?? '') ?>"
         class="w-full text-sm border rounded-lg px-3 py-2 
                <?= $error ? 'border-red-500' : 'border-gray-300' ?>">

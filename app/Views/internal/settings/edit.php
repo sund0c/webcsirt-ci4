@@ -57,7 +57,7 @@
             <div class="mt-4">
                 <p class="text-sm text-gray-600 mb-2">Logo Saat Ini:</p>
                 <img src="<?= site_url('portal-internal-x83fj9/settings/preview/' . $settings['logo']) ?>"
-                    class="w-64 rounded-lg shadow">
+                    class="w-32 rounded-lg shadow">
             </div>
         <?php endif ?>
 
@@ -71,7 +71,7 @@
             <div class="mt-4">
                 <p class="text-sm text-gray-600 mb-2">Favicon Saat Ini:</p>
                 <img src="<?= site_url('portal-internal-x83fj9/settings/preview/' . $settings['favicon']) ?>"
-                    class="w-64 rounded-lg shadow">
+                    class="w-16 rounded-lg shadow">
             </div>
         <?php endif; ?>
 

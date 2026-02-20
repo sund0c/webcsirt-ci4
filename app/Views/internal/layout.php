@@ -139,6 +139,21 @@
                     <span>Site Settings</span>
                 </a>
 
+                <a href="<?= base_url('portal-internal-x83fj9/csirtbalis') ?>"
+                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-700">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M11.983 3a1 1 0 011 1v1.06a7.002 7.002 0 012.121.879l.75-.75a1 1 0 011.414 0l1.414 1.414a1 1 0 010 1.414l-.75.75a7.002 7.002 0 01.879 2.121H20a1 1 0 011 1v2a1 1 0 01-1 1h-1.06a7.002 7.002 0 01-.879 2.121l.75.75a1 1 0 010 1.414l-1.414 1.414a1 1 0 01-1.414 0l-.75-.75a7.002 7.002 0 01-2.121.879V20a1 1 0 01-1 1h-2a1 1 0 01-1-1v-1.06a7.002 7.002 0 01-2.121-.879l-.75.75a1 1 0 01-1.414 0L3.343 17.4a1 1 0 010-1.414l.75-.75a7.002 7.002 0 01-.879-2.121H2a1 1 0 01-1-1v-2a1 1 0 011-1h1.06a7.002 7.002 0 01.879-2.121l-.75-.75a1 1 0 010-1.414L4.603 3.343a1 1 0 011.414 0l.75.75a7.002 7.002 0 012.121-.879V4a1 1 0 011-1h2z" />
+                    </svg>
+                    <span>CSIRT se-Bali</span>
+                </a>
+
 
             </nav>
 

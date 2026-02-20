@@ -60,7 +60,7 @@ class LandingSections extends BaseController
             ],
             'button_link' => [
                 'label'  => 'Link Tombol',
-                'rules'  => 'required|max_length[20]',
+                'rules'  => 'required|max_length[100]',
             ],
             'background_image' => [
                 'label' => 'Background Image',
@@ -90,11 +90,11 @@ class LandingSections extends BaseController
             ],
             'button_link' => [
                 'required' => 'Link Tombol wajib diisi.',
-                'min_length' => 'Link tombol minimal 20 karakter.',
+                'max_length' => 'Link tombol minimal 100 karakter.',
             ],
             'button_text' => [
                 'required' => 'Text Tombol wajib diisi.',
-                'min_length' => 'Text tombol minimal 20 karakter.',
+                'max_length' => 'Text tombol minimal 20 karakter.',
             ],
             'background_image' => [
                 'is_image' => 'File harus berupa gambar.',

@@ -13,9 +13,6 @@ $routes->setAutoRoute(false);
 $routes->get('/', 'Public\Home::index');
 
 
-$routes->get('/advisory', 'Advisory::index');
-
-
 $routes->group('portal-internal-x83fj9', function ($routes) {
     $routes->get('login', 'Internal\Auth::login');
     $routes->post('attempt', 'Internal\Auth::attempt');
@@ -78,10 +75,18 @@ $routes->group('portal-internal-x83fj9', ['filter' => 'adminauth'], function ($r
     $routes->get('settings', 'Internal\SiteSettings::index');
     $routes->post('settings/update', 'Internal\SiteSettings::update');
     $routes->get('settings/preview/(:any)', 'Internal\SiteSettings::preview/$1');
+
+    $routes->get('csirtbalis', 'Internal\CsirtBaliController::index');
+    $routes->get('csirtbalis/create', 'Internal\CsirtBaliController::create');
+    $routes->post('csirtbalis/store', 'Internal\CsirtBaliController::store');
+    $routes->get('csirtbalis/edit/(:num)', 'Internal\CsirtBaliController::edit/$1');
+    $routes->post('csirtbalis/update/(:num)', 'Internal\CsirtBaliController::update/$1');
+    $routes->get('csirtbalis/delete/(:num)', 'Internal\CsirtBaliController::delete/$1');
+    $routes->get('csirtbalis/trash', 'Internal\CsirtBaliController::trash');
+    $routes->get('csirtbalis/restore/(:num)', 'Internal\CsirtBaliController::restore/$1');
 });
 
-
-
+$routes->get('media/settings/(:segment)', 'MediaController::settings/$1');
 
 
 
