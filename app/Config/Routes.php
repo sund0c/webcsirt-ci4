@@ -88,6 +88,17 @@ $routes->group('portal-internal-x83fj9', ['filter' => 'adminauth'], function ($r
 
 $routes->get('media/settings/(:segment)', 'MediaController::settings/$1');
 
+$routes->get('media/landing/(:segment)', 'MediaController::landing/$1');
+$routes->get('media/hero-css', 'MediaController::heroCss');
+$routes->get('media/advisory/(:segment)', 'MediaController::advisory/$1');
+
+
+
+$routes->get('advisory', 'Public\AdvisoryController::index');
+$routes->get('advisory/(:segment)', 'Public\AdvisoryController::show/$1');
+
+
+$routes->get('(:segment)', 'Public\PageController::show/$1');
 
 
 

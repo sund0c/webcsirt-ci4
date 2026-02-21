@@ -4,8 +4,11 @@
 
 
 
+
 <!-- ── HERO ── -->
-<section class="bg-blue-950 py-24">
+
+<section class="relative py-24 bg-blue-950 hero-bg">
+
     <div class="max-w-6xl mx-auto px-6">
 
         <h1 class="text-3xl md:text-4xl font-bold text-white text-center leading-tight mb-6">
@@ -27,23 +30,7 @@
     </div>
 </section>
 
-<!-- ── TENTANG ── -->
-<section class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
 
-        <div>
-            <p class="text-xs font-semibold uppercase text-blue-700 mb-3"><?= esc($sections['about']['title'] ?? 'BALIPROV CSIRT') ?></p>
-            <h2 class="text-3xl font-bold text-gray-800 mb-6 leading-tight">
-                <?= esc($sections['about']['subtitle'] ?? 'BALIPROV CSIRT') ?>
-            </h2>
-            <p class="text-gray-600 leading-relaxed mb-8">
-                <?= esc($sections['about']['content'] ?? 'BALIPROV CSIRT') ?>
-            </p>
-
-        </div>
-
-    </div>
-</section>
 
 <!-- ── SECURITY ADVISORY ── -->
 <section class="py-20 bg-gray-50">
@@ -54,7 +41,7 @@
                 <p class="text-xs font-semibold uppercase text-red-600 mb-2">SECURITY ADVISORIES</p>
                 <h2 class="text-3xl font-bold text-gray-800">Himbauan Keamanan</h2>
             </div>
-            <a href="#"
+            <a href="/advisory"
                 class="bg-blue-800 hover:bg-blue-900 text-white font-semibold px-5 py-3 rounded transition text-sm">
                 Lihat Semua
             </a>
@@ -81,6 +68,24 @@
 
 
         </div>
+    </div>
+</section>
+
+<!-- ── TENTANG ── -->
+<section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+
+        <div>
+            <p class="text-xs font-semibold uppercase text-blue-700 mb-3"><?= esc($sections['about']['title'] ?? 'BALIPROV CSIRT') ?></p>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 leading-tight">
+                <?= esc($sections['about']['subtitle'] ?? 'BALIPROV CSIRT') ?>
+            </h2>
+            <p class="text-gray-600 leading-relaxed mb-8">
+                <?= esc($sections['about']['content'] ?? 'BALIPROV CSIRT') ?>
+            </p>
+
+        </div>
+
     </div>
 </section>
 

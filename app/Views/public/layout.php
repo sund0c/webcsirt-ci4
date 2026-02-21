@@ -8,6 +8,8 @@
         <?= esc($site['site_name']) ?>
     </title>
     <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('media/hero-css') ?>">
+
 
 </head>
 
@@ -37,10 +39,12 @@
             <nav class="hidden md:flex space-x-6 text-sm font-medium items-center">
 
                 <a href="/" class="hover:text-blue-700">Beranda</a>
-                <a href="/tentang" class="hover:text-blue-700">Tentang</a>
-                <a href="/advisory" class="hover:text-blue-700">Layanan</a>
-                <a href="/advisory" class="hover:text-blue-700">RFC 2350</a>
-                <a href="/advisory" class="hover:text-blue-700">Konstituen</a>
+
+                <a href="<?= base_url('tentang') ?>" class="hover:text-blue-700">Tentang</a>
+                <a href="/advisory" class="hover:text-blue-700">Advisory</a>
+                <a href="<?= base_url('layanan') ?>" class="hover:text-blue-700">Layanan</a>
+                <a href="<?= base_url('rfc2350') ?>" class="hover:text-blue-700">RFC 2350</a>
+                <a href="<?= base_url('konstituen') ?>" class="hover:text-blue-700">Panduan</a>
                 <a href="/kontak" class="hover:text-blue-700">Kontak</a>
 
                 <!-- <a href="/lapor"
@@ -62,7 +66,7 @@
             class="hidden md:hidden px-6 pb-4 border-t">
 
             <a href="/" class="block py-2">Beranda</a>
-            <a href="/tentang" class="block py-2">Tentang</a>
+            <a href="<?= base_url('tentang') ?>" class="block py-2">Tentang</a>
             <a href="/advisory" class="block py-2">Advisory</a>
             <a href="/kontak" class="block py-2">Kontak</a>
 
@@ -96,8 +100,6 @@
 
             <div>
                 <h3 class="font-semibold mb-3">Informasi</h3>
-                <p><a href="/privacy" class="hover:underline">Kebijakan Privasi</a></p>
-                <p><a href="/disclaimer" class="hover:underline">Disclaimer</a></p>
                 <p><a href="/privacy" class="hover:underline">Advisory</a></p>
                 <p><a href="/privacy" class="hover:underline">Panduan Teknis</a></p>
             </div>

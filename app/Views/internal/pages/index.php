@@ -24,6 +24,7 @@
             <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
                 <tr>
                     <th class="px-4 py-3">Judul</th>
+                    <th class="px-4 py-3">Slug</th>
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3">Tgl Publish</th>
                     <th class="px-4 py-3">Aksi</th>
@@ -33,6 +34,7 @@
                 <?php foreach ($pages as $page) : ?>
                     <tr>
                         <td class="px-4 py-3"><?= esc($page['title']) ?></td>
+                        <td class="px-4 py-3"><?= esc($page['slug']) ?></td>
                         <td class="px-4 py-3">
                             <?php if ($page['status'] === 'PUBLISHED'): ?>
                                 <span class="px-4 py-1 text-xs bg-green-100 text-green-700 rounded">

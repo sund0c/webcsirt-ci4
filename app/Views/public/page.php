@@ -1,26 +1,30 @@
-<!DOCTYPE html>
-<html>
+<?= $this->extend('public/layout') ?>
 
-<head>
-    <meta charset="UTF-8">
-    <title><?= esc($page['title']) ?></title>
-    <link rel="stylesheet" href="/assets/css/app.css">
-</head>
+<?= $this->section('content') ?>
 
-<body class="bg-gray-100">
+<section class="bg-blue-950 py-24 hero-bg">
+    <div class="max-w-6xl mx-auto px-6">
 
-    <div class="max-w-4xl mx-auto p-8 bg-white shadow mt-10 rounded">
+        <h1 class="text-3xl md:text-4xl font-bold text-white text-center leading-tight mb-6">
 
-        <h1 class="text-3xl font-bold mb-6">
-            <?= esc($page['title']) ?>
+            <?= $page['title'] ?>
         </h1>
 
-        <div class="prose">
-            <?= esc($page['body']) ?>
+    </div>
+</section>
+
+<section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+
+        <div>
+            <p class="text-gray-600 leading-relaxed mb-8">
+                <?= $page['body'] ?>
+            </p>
+
         </div>
 
     </div>
+</section>
 
-</body>
 
-</html>
+<?= $this->endSection() ?>
