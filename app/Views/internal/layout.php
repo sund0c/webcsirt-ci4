@@ -169,10 +169,18 @@
 
 
             <div class="p-4 border-t border-blue-800 text-sm">
-                <a href="/portal-internal-x83fj9/logout"
+                <!-- <a href="/portal-internal-x83fj9/logout"
                     class="text-red-300 hover:text-red-100">
                     Logout
-                </a>
+                </a> -->
+
+                <!-- Sesudah -->
+                <form id="logoutForm" method="POST" action="/portal-internal-x83fj9/logout">
+                    <?= csrf_field() ?>
+                    <button type="submit" id="btnLogout" class="text-red-300 hover:text-red-100">
+                        Logout
+                    </button>
+                </form>
             </div>
 
         </aside>
@@ -194,6 +202,7 @@
             <!-- MAIN CONTENT -->
             <main class="flex-1 p-8">
                 <div class="max-w-6xl mx-auto">
+
                     <?= $this->renderSection('content') ?>
                 </div>
             </main>
@@ -201,6 +210,8 @@
         </div>
 
     </div>
+
+
 
     <link rel="stylesheet" href="<?= base_url('assets/css/datatables.min.css') ?>">
     <script src="<?= base_url('assets/js/datatables.min.js') ?>"></script>
@@ -211,7 +222,54 @@
 
     <script src="<?= base_url('assets/vendor/tinymce/tinymce.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/tinymce-init.js') ?>"></script>
+    <script src="<?= base_url('assets/js/delete-modal.js') ?>"></script>
 
+
+    <!-- Delete Modal -->
+    <div id="deleteModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm mx-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Konfirmasi Hapus</h3>
+            <p class="text-sm text-gray-600 mb-1">Yakin ingin menghapus:</p>
+            <p id="deleteTarget" class="text-sm font-medium text-gray-800 mb-4"></p>
+
+            <div class="flex justify-end gap-2">
+                <button id="cancelDelete"
+                    class="px-4 py-2 text-sm rounded-lg border border-gray-300 hover:bg-gray-50">
+                    Batal
+                </button>
+                <form id="deleteForm" method="POST">
+                    <?= csrf_field() ?>
+                    <button type="submit"
+                        class="px-4 py-2 text-sm rounded-lg bg-red-500 text-white hover:bg-red-600">
+                        Ya, Hapus
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Restore Modal -->
+    <div id="restoreModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
+        <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm mx-4">
+            <h3 class="text-lg font-semibold text-gray-800 mb-2">Konfirmasi Restore</h3>
+            <p class="text-sm text-gray-600 mb-1">Yakin ingin restore:</p>
+            <p id="restoreTarget" class="text-sm font-medium text-gray-800 mb-4"></p>
+
+            <div class="flex justify-end gap-2">
+                <button id="cancelRestore"
+                    class="px-4 py-2 text-sm rounded-lg border border-gray-300 hover:bg-gray-50">
+                    Batal
+                </button>
+                <form id="restoreForm" method="POST">
+                    <?= csrf_field() ?>
+                    <button type="submit"
+                        class="px-4 py-2 text-sm rounded-lg bg-red-500 text-white hover:bg-red-600">
+                        Ya, Restore
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </body>
 

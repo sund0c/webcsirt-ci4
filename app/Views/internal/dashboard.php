@@ -13,26 +13,26 @@
 
     <div class="grid md:grid-cols-3 gap-6">
 
-        <div class="bg-blue-100 p-6 rounded-lg">
+        <!-- <div class="bg-blue-100 p-6 rounded-lg">
             <p class="text-sm text-gray-600">Total Advisory</p>
             <p class="text-3xl font-bold text-blue-900">
-                <?= $totalArticles ?? 0 ?>
+
             </p>
         </div>
 
         <div class="bg-green-100 p-6 rounded-lg">
             <p class="text-sm text-gray-600">Published</p>
             <p class="text-3xl font-bold text-green-900">
-                <?= $publishedArticles ?? 0 ?>
+              
             </p>
         </div>
 
         <div class="bg-yellow-100 p-6 rounded-lg">
             <p class="text-sm text-gray-600">Draft</p>
             <p class="text-3xl font-bold text-yellow-900">
-                <?= $draftArticles ?? 0 ?>
+               
             </p>
-        </div>
+        </div> -->
 
     </div>
 

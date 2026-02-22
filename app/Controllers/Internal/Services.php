@@ -90,11 +90,18 @@ class Services extends BaseController
                 ->with('errors', $this->validator->getErrors());
         }
 
+
+        $link = $this->request->getPost('link');
+        // Tolak protokol berbahaya
+        if (preg_match('/^javascript:/i', trim($link))) {
+            return redirect()->back()->with('errors', ['link' => 'Link tidak valid.']);
+        }
+
         $data = [
-            'title'       => $this->request->getPost('title'),
-            'description' => $this->request->getPost('description'),
-            'icon'        => $this->request->getPost('icon'),
-            'link'        => $this->request->getPost('link'),
+            'title'       => strip_tags($this->request->getPost('title')),
+            'description' => strip_tags($this->request->getPost('description')),
+            'icon'        => strip_tags($this->request->getPost('icon')),
+            'link'        => $link,
             'updated_by'  => session('user_id'),
         ];
 

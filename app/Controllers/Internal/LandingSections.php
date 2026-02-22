@@ -118,12 +118,18 @@ class LandingSections extends BaseController
                 ->with('errors', $this->validator->getErrors());
         }
 
+        $link = $this->request->getPost('button_link');
+        // Tolak protokol berbahaya
+        if (preg_match('/^javascript:/i', trim($link))) {
+            return redirect()->back()->with('errors', ['button_link' => 'Link tidak valid.']);
+        }
+
         $data = [
-            'title' => $this->request->getPost('title'),
-            'subtitle' => $this->request->getPost('subtitle'),
-            'content' => $this->request->getPost('content'),
-            'button_text' => $this->request->getPost('button_text'),
-            'button_link' => $this->request->getPost('button_link'),
+            'title'       => strip_tags($this->request->getPost('title')),
+            'subtitle'    => strip_tags($this->request->getPost('subtitle')),
+            'content'     => strip_tags($this->request->getPost('content')),
+            'button_text' => strip_tags($this->request->getPost('button_text')),
+            'button_link' => $link,
             'updated_by' => session('user_id'),
         ];
 

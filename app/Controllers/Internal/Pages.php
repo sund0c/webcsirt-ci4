@@ -347,19 +347,48 @@ class Pages extends BaseController
         return redirect()->to('/portal-internal-x83fj9/pages/trash');
     }
 
+    // public function uploadImage()
+    // {
+
+    //     $file = $this->request->getFile('file');
+
+    //     if (!$file || !$file->isValid()) {
+    //         return $this->response->setJSON(['error' => 'File tidak valid']);
+    //     }
+
+    //     // Validasi mime
+    //     $allowedMime = ['image/jpeg', 'image/png', 'image/webp'];
+    //     if (!in_array($file->getMimeType(), $allowedMime)) {
+    //         return $this->response->setJSON(['error' => 'Format tidak diizinkan']);
+    //     }
+
+    //     // Validasi size max 2MB
+    //     if ($file->getSize() > 2 * 1024 * 1024) {
+    //         return $this->response->setJSON(['error' => 'Maksimal 2MB']);
+    //     }
+
+    //     // Generate nama random
+    //     $newName = $file->getRandomName();
+
+    //     $uploadPath = FCPATH . 'uploads/pages/';
+
+    //     if (!is_dir($uploadPath)) {
+    //         mkdir($uploadPath, 0755, true);
+    //     }
+
+    //     $file->move($uploadPath, $newName);
+
+    //     return $this->response->setJSON([
+    //         'location' => base_url('uploads/pages/' . $newName)
+    //     ]);
+    // }
+
     public function uploadImage()
     {
-
         $file = $this->request->getFile('file');
 
         if (!$file || !$file->isValid()) {
             return $this->response->setJSON(['error' => 'File tidak valid']);
-        }
-
-        // Validasi mime
-        $allowedMime = ['image/jpeg', 'image/png', 'image/webp'];
-        if (!in_array($file->getMimeType(), $allowedMime)) {
-            return $this->response->setJSON(['error' => 'Format tidak diizinkan']);
         }
 
         // Validasi size max 2MB
@@ -367,16 +396,44 @@ class Pages extends BaseController
             return $this->response->setJSON(['error' => 'Maksimal 2MB']);
         }
 
-        // Generate nama random
-        $newName = $file->getRandomName();
+        // Validasi magic bytes via getimagesize()
+        $imageInfo = @getimagesize($file->getTempName());
+        if (!$imageInfo) {
+            return $this->response->setJSON(['error' => 'File bukan gambar valid']);
+        }
+
+        // Validasi mime dari magic bytes (bukan dari client)
+        $allowedMime = ['image/jpeg', 'image/png', 'image/webp'];
+        if (!in_array($imageInfo['mime'], $allowedMime)) {
+            return $this->response->setJSON(['error' => 'Format tidak diizinkan. Gunakan JPG, PNG, atau WebP']);
+        }
+
+        // Batasi resolusi (anti image bomb)
+        if ($imageInfo[0] > 4000 || $imageInfo[1] > 4000) {
+            return $this->response->setJSON(['error' => 'Resolusi maksimal 4000x4000px']);
+        }
+
+        // Re-encode via GD untuk strip EXIF & payload tersembunyi
+        $image = imagecreatefromstring(file_get_contents($file->getTempName()));
+        if (!$image) {
+            return $this->response->setJSON(['error' => 'Gagal memproses gambar']);
+        }
 
         $uploadPath = FCPATH . 'uploads/pages/';
-
         if (!is_dir($uploadPath)) {
             mkdir($uploadPath, 0755, true);
         }
 
-        $file->move($uploadPath, $newName);
+        // Paksa simpan sebagai JPG dengan nama random hex
+        $newName = bin2hex(random_bytes(16)) . '.jpg';
+        $destination = $uploadPath . $newName;
+
+        $saved = imagejpeg($image, $destination, 85);
+        imagedestroy($image);
+
+        if (!$saved) {
+            return $this->response->setJSON(['error' => 'Gagal menyimpan gambar']);
+        }
 
         return $this->response->setJSON([
             'location' => base_url('uploads/pages/' . $newName)

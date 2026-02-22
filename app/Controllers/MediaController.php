@@ -8,37 +8,55 @@ class MediaController extends Controller
 {
     public function settings($filename)
     {
-        $path = WRITEPATH . 'uploads/settings/' . $filename;
+        // $allowed = ['png', 'jpg', 'jpeg', 'webp'];
 
-        if (!is_file($path)) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-        }
+        // $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
-        return $this->response
-            ->setHeader('Content-Type', mime_content_type($path))
-            ->setBody(file_get_contents($path));
+        // if (!in_array($ext, $allowed)) {
+        //     throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        // }
+
+        // $path = WRITEPATH . 'uploads/settings/' . $filename;
+
+        // if (!is_file($path)) {
+        //     throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        // }
+
+        // return $this->response
+        //     ->setHeader('Content-Type', mime_content_type($path))
+        //     ->setBody(file_get_contents($path));
+        return $this->serveFile(
+            $filename,
+            WRITEPATH . 'uploads/settings/',
+            ['png', 'jpg', 'jpeg', 'svg', 'ico']
+        );
     }
 
     public function landing($filename)
     {
-        $allowed = ['png', 'jpg', 'jpeg', 'webp'];
+        // $allowed = ['png', 'jpg', 'jpeg', 'webp'];
 
-        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        // $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
-        if (!in_array($ext, $allowed)) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-        }
+        // if (!in_array($ext, $allowed)) {
+        //     throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        // }
 
-        $path = WRITEPATH . 'uploads/landing/' . $filename;
+        // $path = WRITEPATH . 'uploads/landing/' . $filename;
 
-        if (!is_file($path)) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-        }
+        // if (!is_file($path)) {
+        //     throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        // }
 
-        return $this->response
-            ->setHeader('Content-Type', mime_content_type($path))
-            ->setHeader('Cache-Control', 'public, max-age=3600')
-            ->setBody(file_get_contents($path));
+        // return $this->response
+        //     ->setHeader('Content-Type', mime_content_type($path))
+        //     ->setHeader('Cache-Control', 'public, max-age=3600')
+        //     ->setBody(file_get_contents($path));
+        return $this->serveFile(
+            $filename,
+            WRITEPATH . 'uploads/landing/',
+            ['png', 'jpg', 'jpeg', 'webp']
+        );
     }
 
 
@@ -56,7 +74,15 @@ class MediaController extends Controller
                 ->setBody('');
         }
 
-        $bgUrl = base_url('media/landing/' . $hero['background_image']);
+        $safeName = basename($hero['background_image']);
+        // Pastikan tidak kosong setelah sanitasi
+        if (empty($safeName)) {
+            return $this->response
+                ->setHeader('Content-Type', 'text/css')
+                ->setBody('');
+        }
+        $bgUrl = base_url('media/landing/' . $safeName);
+        //$bgUrl = base_url('media/landing/' . $hero['background_image']);
 
         $css = "
     .hero-bg {
@@ -74,60 +100,145 @@ class MediaController extends Controller
 
     public function advisory($filename)
     {
-        $allowed = ['png', 'jpg', 'jpeg', 'webp'];
+        // $allowed = ['png', 'jpg', 'jpeg', 'webp'];
 
-        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        // $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
-        if (!in_array($ext, $allowed)) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-        }
+        // if (!in_array($ext, $allowed)) {
+        //     throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        // }
 
-        $path = WRITEPATH . 'uploads/advisories/' . $filename;
+        // $path = WRITEPATH . 'uploads/advisories/' . $filename;
 
-        if (!is_file($path)) {
-            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
-        }
+        // if (!is_file($path)) {
+        //     throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        // }
 
-        return $this->response
-            ->setHeader('Content-Type', mime_content_type($path))
-            ->setHeader('Cache-Control', 'public, max-age=3600')
-            ->setBody(file_get_contents($path));
+        // return $this->response
+        //     ->setHeader('Content-Type', mime_content_type($path))
+        //     ->setHeader('Cache-Control', 'public, max-age=3600')
+        //     ->setBody(file_get_contents($path));
+
+        return $this->serveFile(
+            $filename,
+            WRITEPATH . 'uploads/advisories/',
+            ['png', 'jpg', 'jpeg', 'webp']
+        );
     }
 
     public function guide($filename)
     {
-        $path = WRITEPATH . 'uploads/guides/' . $filename;
+        // $allowed = ['pdf'];
 
-        if (!is_file($path)) {
+        // $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+        // if (!in_array($ext, $allowed)) {
+        //     throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        // }
+
+        // $filename = basename($filename);
+
+        // // Cek apakah file ini memang published dan tidak dihapus
+        // $guideModel = new \App\Models\GuideModel();
+        // $guide = $guideModel
+        //     ->where('stored_name', $filename)
+        //     ->where('status', 'PUBLISHED')
+        //     ->where('deleted_at', null)
+        //     ->first();
+
+        // if (!$guide) {
+        //     throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        // }
+
+        // $path = WRITEPATH . 'uploads/guides/' . $filename;
+
+        // if (!is_file($path)) {
+        //     throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        // }
+
+        // return $this->response
+        //     ->setHeader('Content-Type', mime_content_type($path))
+        //     ->setHeader('Content-Disposition', 'attachment; filename="' . basename($path) . '"')
+        //     ->setHeader('Cache-Control', 'public, max-age=3600')
+        //     ->setBody(file_get_contents($path));
+        // Guide tetap butuh DB check, jadi handle terpisah
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        if ($ext !== 'pdf') {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
-        return $this->response
-            ->setHeader('Content-Type', mime_content_type($path))
-            ->setHeader('Content-Disposition', 'attachment; filename="' . basename($path) . '"')
-            ->setHeader('Cache-Control', 'public, max-age=3600')
-            ->setBody(file_get_contents($path));
+        $filename = basename($filename);
+
+        $guideModel = new \App\Models\GuideModel();
+        $guide = $guideModel
+            ->where('stored_name', $filename)
+            ->where('status', 'PUBLISHED')
+            ->where('deleted_at', null)
+            ->first();
+
+        if (!$guide) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        return $this->serveFile(
+            $filename,
+            WRITEPATH . 'uploads/guides/',
+            ['pdf'],
+            'attachment'
+        );
     }
 
     public function article($filename)
     {
-        $allowed = ['png', 'jpg', 'jpeg', 'webp'];
+        // $allowed = ['png', 'jpg', 'jpeg', 'webp'];
 
+        // $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+        // if (!in_array($ext, $allowed)) {
+        //     throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        // }
+
+        // $path = WRITEPATH . 'uploads/articles/' . $filename;
+
+        // if (!is_file($path)) {
+        //     throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        // }
+
+        // return $this->response
+        //     ->setHeader('Content-Type', mime_content_type($path))
+        //     ->setHeader('Cache-Control', 'public, max-age=3600')
+        //     ->setBody(file_get_contents($path));
+        return $this->serveFile(
+            $filename,
+            WRITEPATH . 'uploads/articles/',
+            ['png', 'jpg', 'jpeg', 'webp']
+        );
+    }
+
+    private function serveFile(string $filename, string $directory, array $allowedExt, string $disposition = 'inline'): \CodeIgniter\HTTP\Response
+    {
+        // 1. Whitelist ekstensi
         $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-
-        if (!in_array($ext, $allowed)) {
+        if (!in_array($ext, $allowedExt)) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
-        $path = WRITEPATH . 'uploads/articles/' . $filename;
+        // 2. Strip path traversal
+        $filename = basename($filename);
 
-        if (!is_file($path)) {
+        // 3. Realpath check — pastikan tidak keluar dari direktori
+        $path       = $directory . $filename;
+        $realPath   = realpath($path);
+        $allowedDir = realpath($directory);
+
+        if (!$realPath || !$allowedDir || strpos($realPath, $allowedDir) !== 0) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
         return $this->response
-            ->setHeader('Content-Type', mime_content_type($path))
+            ->setHeader('Content-Type', mime_content_type($realPath))
+            ->setHeader('Content-Disposition', $disposition . '; filename="' . $filename . '"')
             ->setHeader('Cache-Control', 'public, max-age=3600')
-            ->setBody(file_get_contents($path));
+            ->setBody(file_get_contents($realPath));
     }
 }

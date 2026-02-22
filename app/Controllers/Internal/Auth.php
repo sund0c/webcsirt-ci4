@@ -4,6 +4,7 @@ namespace App\Controllers\Internal;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
+use Config\Services;
 
 class Auth extends BaseController
 {
@@ -14,6 +15,17 @@ class Auth extends BaseController
 
     public function attempt()
     {
+        $ip = $this->request->getIPAddress();
+        $key = 'login-ip-' . hash('sha256', $ip);
+
+        $throttler = Services::throttler();
+
+        // 10 percobaan dalam 5 menit
+        if (!$throttler->check($key, 10, 300)) {
+            return redirect()->back()
+                ->with('error', 'Terlalu banyak percobaan login dari IP ini. Coba lagi nanti.');
+        }
+
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 

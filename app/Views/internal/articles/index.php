@@ -60,13 +60,16 @@
                                     Edit
                                 </a>
 
-                                <!-- Delete -->
-                                <a href="<?= base_url('portal-internal-x83fj9/articles/delete/' . $article['id']) ?>"
-                                    class="inline-flex items-center justify-center px-3 py-1 text-xs
-                   bg-red-600 text-white rounded 
-                   hover:bg-red-700 transition duration-150">
+
+                                <button
+                                    data-delete-id="<?= $article['id'] ?>"
+                                    data-delete-title="<?= esc($article['title']) ?>"
+                                    data-delete-url="/portal-internal-x83fj9/articles/delete/"
+                                    class="btn-delete inline-flex items-center justify-center px-3 py-1 text-xs 
+           bg-red-600 text-white rounded hover:bg-red-700 transition duration-150">
                                     Hapus
-                                </a>
+                                </button>
+
 
                             </div>
                         </td>
@@ -78,6 +81,7 @@
     </div>
 
 </div>
+
 
 
 <?= $this->endSection() ?>

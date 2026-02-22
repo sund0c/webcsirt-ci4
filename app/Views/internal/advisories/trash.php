@@ -26,11 +26,16 @@
                         </td>
                         <td class="px-4 py-3">
 
-                            <a href="<?= base_url('portal-internal-x83fj9/advisories/restore/' . $advisory['id']) ?>"
-                                class="inline-block px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700"
-                                title="Draft">
+
+                            <!-- Restore -->
+                            <button
+                                data-restore-id="<?= $advisory['id'] ?>"
+                                data-restore-title="<?= esc($advisory['title']) ?>"
+                                data-restore-url="/portal-internal-x83fj9/advisories/restore/"
+                                class="btn-restore inline-flex items-center justify-center px-3 py-1 text-xs 
+           bg-red-600 text-white rounded hover:bg-red-700 transition duration-150">
                                 Draft
-                            </a>
+                            </button>
                         </td>
 
                     </tr>

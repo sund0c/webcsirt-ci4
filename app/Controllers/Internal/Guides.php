@@ -94,6 +94,21 @@ class Guides extends BaseController
             mkdir($uploadPath, 0755, true);
         }
 
+        // Validasi magic bytes PDF
+        $finfo = finfo_open(FILEINFO_MIME_TYPE);
+        $realMime = finfo_file($finfo, $file->getTempName());
+        finfo_close($finfo);
+
+        $handle = fopen($file->getTempName(), 'rb');
+        $header = fread($handle, 5);
+        fclose($handle);
+
+        if ($realMime !== 'application/pdf' || $header !== '%PDF-') {
+            return redirect()->back()
+                ->withInput()
+                ->with('errors', ['file' => 'File bukan PDF valid.']);
+        }
+
         $file->move($uploadPath, $storedName);
 
         $fullPath = $uploadPath . $storedName;
@@ -205,9 +220,9 @@ class Guides extends BaseController
                 ->with('errors', $this->validator->getErrors());
         }
         $data = [
-            'title'       => $this->request->getPost('title'),
-            'description' => $this->request->getPost('description'),
-            'status'      => $this->request->getPost('status'),
+            'title'       => strip_tags($this->request->getPost('title')),
+            'description' => strip_tags($this->request->getPost('description')),
+            'status'      => strip_tags($this->request->getPost('status')),
             'updated_by'  => session('user_id')
         ];
 
@@ -229,14 +244,32 @@ class Guides extends BaseController
             $mimeType     = $file->getClientMimeType();
             $newName      = $file->getRandomName();
 
+
+
+            // Validasi magic bytes PDF
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $realMime = finfo_file($finfo, $file->getTempName());
+            finfo_close($finfo);
+
+            $handle = fopen($file->getTempName(), 'rb');
+            $header = fread($handle, 5);
+            fclose($handle);
+
+            if ($realMime !== 'application/pdf' || $header !== '%PDF-') {
+                return redirect()->back()
+                    ->withInput()
+                    ->with('errors', ['file' => 'File bukan PDF valid.']);
+            }
+
+            // Move file
+            $file->move($uploadPath, $newName);
+
             // Hapus file lama
             $oldFilePath = $uploadPath . $guide['stored_name'];
             if (file_exists($oldFilePath)) {
                 unlink($oldFilePath);
             }
 
-            // Move file
-            $file->move($uploadPath, $newName);
 
             $fullPath = $uploadPath . $newName;
 
@@ -380,9 +413,11 @@ class Guides extends BaseController
         // return $this->response
         //     ->download($path, null)
         //     ->setFileName($guide['file_name']);
+        $safeName = addslashes(basename($guide['file_name']));
+
         return $this->response
             ->setHeader('Content-Type', 'application/pdf')
-            ->setHeader('Content-Disposition', 'inline; filename="' . $guide['file_name'] . '"')
+            ->setHeader('Content-Disposition', 'inline; filename="' . $safeName . '"')
             ->setHeader('Content-Length', filesize($path))
             ->setBody(file_get_contents($path));
     }

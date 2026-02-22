@@ -475,11 +475,24 @@ class Articles extends BaseController
 
     public function preview($filename)
     {
-        $path = WRITEPATH . 'uploads/articles/' . $filename;
 
-        if (!is_file($path)) {
+        $filename = basename($filename);
+        if (!preg_match('/^[a-f0-9]{32}\.(jpg|jpeg|png|pdf)$/i', $filename)) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
+
+        $path = WRITEPATH . 'uploads/articles/' . $filename;
+
+        // Pastikan path tidak keluar dari direktori yang diizinkan
+        $realPath = realpath($path);
+        $allowedDir = realpath(WRITEPATH . 'uploads/articles/');
+        if (!$realPath || strpos($realPath, $allowedDir) !== 0) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        // if (!is_file($path)) {
+        //     throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        // }
 
         return $this->response
             ->setHeader('Content-Type', mime_content_type($path))
