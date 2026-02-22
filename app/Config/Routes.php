@@ -100,4 +100,7 @@ $routes->get('advisory/(:segment)', 'Public\AdvisoryController::show/$1');
 $routes->get('article', 'Public\ArticleController::index');
 $routes->get('article/(:segment)', 'Public\ArticleController::show/$1');
 
+
+$routes->get('sitemap.xml', 'Sitemap::index');
+
 $routes->get('(:segment)', 'Public\PageController::show/$1');

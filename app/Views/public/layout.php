@@ -7,6 +7,9 @@
     <title>
         <?= esc($site['site_name']) ?>
     </title>
+    <meta name="description" content="<?= esc($site['site_tagline'] . ' | Pencegahan, deteksi, respons, dan pemulihan insiden keamanan siber secara terkoordinasi pada sistem elektronik Pemerintah Provinsi Bali
+
+') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
     <link rel="stylesheet" href="<?= base_url('media/hero-css') ?>">
     <?php if (!empty($site['favicon'])): ?>
