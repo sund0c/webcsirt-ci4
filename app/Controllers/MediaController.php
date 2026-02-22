@@ -93,4 +93,41 @@ class MediaController extends Controller
             ->setHeader('Cache-Control', 'public, max-age=3600')
             ->setBody(file_get_contents($path));
     }
+
+    public function guide($filename)
+    {
+        $path = WRITEPATH . 'uploads/guides/' . $filename;
+
+        if (!is_file($path)) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        return $this->response
+            ->setHeader('Content-Type', mime_content_type($path))
+            ->setHeader('Content-Disposition', 'attachment; filename="' . basename($path) . '"')
+            ->setHeader('Cache-Control', 'public, max-age=3600')
+            ->setBody(file_get_contents($path));
+    }
+
+    public function article($filename)
+    {
+        $allowed = ['png', 'jpg', 'jpeg', 'webp'];
+
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+        if (!in_array($ext, $allowed)) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $path = WRITEPATH . 'uploads/articles/' . $filename;
+
+        if (!is_file($path)) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        return $this->response
+            ->setHeader('Content-Type', mime_content_type($path))
+            ->setHeader('Cache-Control', 'public, max-age=3600')
+            ->setBody(file_get_contents($path));
+    }
 }

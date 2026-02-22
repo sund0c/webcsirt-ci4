@@ -15,6 +15,7 @@ use CodeIgniter\Filters\SecureHeaders;
 
 
 
+
 class Filters extends BaseFilters
 {
     /**
@@ -78,12 +79,15 @@ class Filters extends BaseFilters
     public array $globals = [
         'before' => [
             // 'honeypot',
-            'csrf',
-            // 'invalidchars',
+            'csrf' => [
+                'except' => [
+                    'portal-internal-x83fj9/pages/upload-image',
+                ],
+            ],
         ],
         'after' => [
             // 'honeypot',
-            // 'secureheaders',
+            //'secureheaders',
             //'toolbar',
         ],
     ];

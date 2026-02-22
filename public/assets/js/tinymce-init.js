@@ -1,10 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Cari semua textarea yang pakai Tiny
     const editors = document.querySelectorAll('[data-tinymce="true"]');
     if (editors.length === 0) return;
 
-    // Ambil CSRF token dari meta tag (wajib ada di layout)
     const csrfNameMeta = document.querySelector('meta[name="csrf-token-name"]');
     const csrfHashMeta = document.querySelector('meta[name="csrf-token-hash"]');
 
@@ -20,18 +18,27 @@ document.addEventListener("DOMContentLoaded", function () {
         if (tinymce.get(el.id)) return;
 
         tinymce.init({
+
             selector: "#" + el.id,
             height: el.dataset.height || 500,
-
-            // 🔥 WAJIB untuk self-hosted TinyMCE v6+
             license_key: 'gpl',
 
-            plugins: 'lists link image table code fullscreen',
+            plugins: [
+                'lists',
+                'link',
+                'image',
+                'table',
+                'code',
+                'fullscreen'
+            ],
 
             toolbar:
                 'undo redo | styles | bold italic underline | ' +
                 'alignleft aligncenter alignright alignjustify | ' +
                 'bullist numlist | link image table | code fullscreen',
+
+            menubar: false,
+            branding: false,
 
             relative_urls: false,
             remove_script_host: false,
@@ -39,6 +46,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             automatic_uploads: true,
             images_upload_credentials: true,
+
+            formats: {
+                alignleft:  { selector: 'img', classes: 'img-left' },
+                aligncenter:{ selector: 'img', classes: 'img-center' },
+                alignright: { selector: 'img', classes: 'img-right' }
+            },
+
+            invalid_styles: {
+                '*': 'margin margin-left margin-right display'
+            },
 
             images_upload_handler: function (blobInfo, progress) {
 
@@ -83,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     const formData = new FormData();
                     formData.append('file', blobInfo.blob(), blobInfo.filename());
 
-                    // Tambahkan CSRF jika tersedia
                     if (csrfName && csrfHash) {
                         formData.append(csrfName, csrfHash);
                     }

@@ -43,10 +43,10 @@ abstract class BaseController extends Controller
         // $this->session = service('session');
 
         // Security Headers (Manual & Stable)
-        $response->setHeader(
-            'Content-Security-Policy',
-            "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:;"
-        );
+        // $response->setHeader(
+        //     'Content-Security-Policy',
+        //     "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:;"
+        // );
 
 
         $response->setHeader('X-Frame-Options', 'SAMEORIGIN');

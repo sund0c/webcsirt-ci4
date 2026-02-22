@@ -6,7 +6,7 @@
 <section class="bg-blue-950 py-24 hero-bg">
     <div class="max-w-6xl mx-auto px-6">
 
-        <h1 class="text-3xl md:text-4xl font-bold text-white text-center leading-tight mb-6">Security Advisory</h1>
+        <h1 class="text-3xl md:text-4xl font-bold text-white text-center leading-tight mb-6">Artikel Keamanan</h1>
 
     </div>
 </section>
@@ -20,10 +20,10 @@
 
         <div class="grid gap-8">
 
-            <?php foreach ($advisories as $adv): ?>
+            <?php foreach ($articles as $adv): ?>
                 <div class="bg-white p-6 rounded shadow flex gap-6">
 
-                    <img src="<?= base_url('media/advisory/' . esc($adv['featured_image'])) ?>"
+                    <img src="<?= base_url('media/article/' . esc($adv['featured_image'])) ?>"
                         alt="<?= esc($adv['title']) ?>"
                         width="220"
                         height="160"
@@ -33,7 +33,7 @@
                     <div class="flex flex-col flex-1">
 
                         <h2 class="font-bold text-lg mb-2">
-                            <a href="<?= base_url('advisory/' . esc($adv['slug'])) ?>"
+                            <a href="<?= base_url('article/' . esc($adv['slug'])) ?>"
                                 class="hover:text-blue-700">
                                 <?= esc($adv['title']) ?>
                             </a>

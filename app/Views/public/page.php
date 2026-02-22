@@ -17,9 +17,9 @@
     <div class="max-w-6xl mx-auto px-6">
 
         <div>
-            <p class="text-gray-600 leading-relaxed mb-8">
+            <div class="text-gray-600 leading-relaxed mb-8 content-area">
                 <?= $page['body'] ?>
-            </p>
+            </div>
 
         </div>
 

@@ -4,11 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="csrf-token-name" content="<?= csrf_token() ?>">
     <meta name="csrf-token-hash" content="<?= csrf_hash() ?>">
 
     <title><?= esc($title ?? 'Admin') ?></title>
     <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
+
+    <?php if (!empty($site['favicon'])): ?>
+        <link rel="icon"
+            type="image/png"
+            href="<?= base_url('media/settings/' . esc($site['favicon'])) ?>">
+    <?php endif; ?>
+
 </head>
 
 <body class="bg-gray-100">
@@ -149,8 +157,9 @@
                         <path stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
-                            d="M11.983 3a1 1 0 011 1v1.06a7.002 7.002 0 012.121.879l.75-.75a1 1 0 011.414 0l1.414 1.414a1 1 0 010 1.414l-.75.75a7.002 7.002 0 01.879 2.121H20a1 1 0 011 1v2a1 1 0 01-1 1h-1.06a7.002 7.002 0 01-.879 2.121l.75.75a1 1 0 010 1.414l-1.414 1.414a1 1 0 01-1.414 0l-.75-.75a7.002 7.002 0 01-2.121.879V20a1 1 0 01-1 1h-2a1 1 0 01-1-1v-1.06a7.002 7.002 0 01-2.121-.879l-.75.75a1 1 0 01-1.414 0L3.343 17.4a1 1 0 010-1.414l.75-.75a7.002 7.002 0 01-.879-2.121H2a1 1 0 01-1-1v-2a1 1 0 011-1h1.06a7.002 7.002 0 01.879-2.121l-.75-.75a1 1 0 010-1.414L4.603 3.343a1 1 0 011.414 0l.75.75a7.002 7.002 0 012.121-.879V4a1 1 0 011-1h2z" />
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
+
                     <span>CSIRT se-Bali</span>
                 </a>
 

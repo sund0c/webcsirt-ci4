@@ -3,17 +3,17 @@
 namespace App\Controllers\Public;
 
 use App\Controllers\BaseController;
-use App\Models\AdvisoryModel;
+use App\Models\ArticleModel;
 use App\Models\SiteSettingsModel;
 
-class AdvisoryController extends BaseController
+class ArticleController extends BaseController
 {
-    protected $advisoryModel;
+    protected $articleModel;
     protected $settingsModel;
 
     public function __construct()
     {
-        $this->advisoryModel = new AdvisoryModel();
+        $this->articleModel = new ArticleModel();
         $this->settingsModel = new SiteSettingsModel();
     }
 
@@ -21,16 +21,16 @@ class AdvisoryController extends BaseController
     {
         $site = $this->settingsModel->first();
 
-        $advisories = $this->advisoryModel
+        $articles = $this->articleModel
             ->where('status', 'PUBLISHED')
             ->orderBy('published_at', 'DESC')
             ->paginate(10);
 
-        return view('public/advisory/index', [
+        return view('public/article/index', [
             'site'       => $site,
-            'advisories' => $advisories,
-            'pager'      => $this->advisoryModel->pager,
-            'pageTitle'  => 'Security Advisory'
+            'articles' => $articles,
+            'pager'      => $this->articleModel->pager,
+            'pageTitle'  => 'Artikel Keamanan'
         ]);
     }
 
@@ -38,19 +38,19 @@ class AdvisoryController extends BaseController
     {
         $site = $this->settingsModel->first();
 
-        $advisory = $this->advisoryModel
+        $article = $this->articleModel
             ->where('slug', $slug)
             ->where('status', 'PUBLISHED')
             ->first();
 
-        if (!$advisory) {
+        if (!$article) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
-        return view('public/advisory/show', [
+        return view('public/article/show', [
             'site'       => $site,
-            'advisory'   => $advisory,
-            'pageTitle'  => $advisory['title']
+            'article'   => $article,
+            'pageTitle'  => $article['title']
         ]);
     }
 }

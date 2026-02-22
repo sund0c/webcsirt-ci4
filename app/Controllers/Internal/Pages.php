@@ -349,6 +349,7 @@ class Pages extends BaseController
 
     public function uploadImage()
     {
+
         $file = $this->request->getFile('file');
 
         if (!$file || !$file->isValid()) {

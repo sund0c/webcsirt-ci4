@@ -9,6 +9,11 @@
     </title>
     <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
     <link rel="stylesheet" href="<?= base_url('media/hero-css') ?>">
+    <?php if (!empty($site['favicon'])): ?>
+        <link rel="icon"
+            type="image/png"
+            href="<?= base_url('media/settings/' . esc($site['favicon'])) ?>">
+    <?php endif; ?>
 
 
 </head>
@@ -20,19 +25,24 @@
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-4">
 
-                <!-- Logo -->
-                <img src=" <?= base_url('media/settings/' . esc($site['logo'])) ?>"
-                    class="h-10 w-auto" alt="Logo CSIRT">
+                <a href="<?= base_url('/') ?>" class="flex items-center space-x-4">
 
-                <!-- Nama -->
-                <div>
-                    <h1 class="text-lg font-bold text-gray-800 leading-tight">
-                        <?= esc($site['site_name'] ?? 'BALIPROV CSIRT') ?>
-                    </h1>
-                    <p class="text-sm text-gray-600">
-                        <?= esc($site['site_tagline'] ?? 'BALIPROV CSIRT') ?>
-                    </p>
-                </div>
+                    <!-- Logo -->
+                    <img src="<?= base_url('media/settings/' . esc($site['logo'])) ?>"
+                        class="h-10 w-auto"
+                        alt="Logo CSIRT">
+
+                    <!-- Nama -->
+                    <div>
+                        <h1 class="text-lg font-bold text-gray-800 leading-tight">
+                            <?= esc($site['site_name'] ?? 'BALIPROV CSIRT') ?>
+                        </h1>
+                        <p class="text-sm text-gray-600">
+                            <?= esc($site['site_tagline'] ?? 'BALIPROV CSIRT') ?>
+                        </p>
+                    </div>
+
+                </a>
             </div>
 
             <!-- Desktop Navigation -->
@@ -44,8 +54,7 @@
                 <a href="/advisory" class="hover:text-blue-700">Advisory</a>
                 <a href="<?= base_url('layanan') ?>" class="hover:text-blue-700">Layanan</a>
                 <a href="<?= base_url('rfc2350') ?>" class="hover:text-blue-700">RFC 2350</a>
-                <a href="<?= base_url('konstituen') ?>" class="hover:text-blue-700">Panduan</a>
-                <a href="/kontak" class="hover:text-blue-700">Kontak</a>
+                <a href="/panduan" class=" hover:text-blue-700">Panduan</a>
 
                 <!-- <a href="/lapor"
                     class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
@@ -100,8 +109,9 @@
 
             <div>
                 <h3 class="font-semibold mb-3">Informasi</h3>
-                <p><a href="/privacy" class="hover:underline">Advisory</a></p>
-                <p><a href="/privacy" class="hover:underline">Panduan Teknis</a></p>
+                <p><a href="/advisory" class="hover:underline">Advisory</a></p>
+                <p><a href="/panduan" class="hover:underline">Panduan Teknis</a></p>
+                <p><a href="/article" class="hover:underline">Artikel</a></p>
             </div>
 
         </div>

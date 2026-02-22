@@ -1,84 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
-    <meta charset="utf-8">
-    <title><?= lang('Errors.pageNotFound') ?></title>
-
-    <style>
-        div.logo {
-            height: 200px;
-            width: 155px;
-            display: inline-block;
-            opacity: 0.08;
-            position: absolute;
-            top: 2rem;
-            left: 50%;
-            margin-left: -73px;
-        }
-        body {
-            height: 100%;
-            background: #fafafa;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color: #777;
-            font-weight: 300;
-        }
-        h1 {
-            font-weight: lighter;
-            letter-spacing: normal;
-            font-size: 3rem;
-            margin-top: 0;
-            margin-bottom: 0;
-            color: #222;
-        }
-        .wrap {
-            max-width: 1024px;
-            margin: 5rem auto;
-            padding: 2rem;
-            background: #fff;
-            text-align: center;
-            border: 1px solid #efefef;
-            border-radius: 0.5rem;
-            position: relative;
-        }
-        pre {
-            white-space: normal;
-            margin-top: 1.5rem;
-        }
-        code {
-            background: #fafafa;
-            border: 1px solid #efefef;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            display: block;
-        }
-        p {
-            margin-top: 1.5rem;
-        }
-        .footer {
-            margin-top: 2rem;
-            border-top: 1px solid #efefef;
-            padding: 1em 2em 0 2em;
-            font-size: 85%;
-            color: #999;
-        }
-        a:active,
-        a:link,
-        a:visited {
-            color: #dd4814;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>404 - Halaman Tidak Ditemukan</title>
+    <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
 </head>
-<body>
-    <div class="wrap">
-        <h1>404</h1>
 
-        <p>
-            <?php if (ENVIRONMENT !== 'production') : ?>
-                <?= nl2br(esc($message)) ?>
-            <?php else : ?>
-                <?= lang('Errors.sorryCannotFind') ?>
-            <?php endif; ?>
-        </p>
-    </div>
+
+<body class="bg-gray-900 min-h-screen flex flex-col">
+
+    <!-- MAIN -->
+    <main class="flex-1 flex items-center justify-center px-6 py-20">
+        <div class="max-w-2xl w-full text-center">
+
+            <!-- Grid background decoration -->
+            <div class="relative mb-10">
+
+
+                <p class="text-white select-none leading-none mb-6"
+                    style="font-family:'Syne',sans-serif;font-size:200px;font-weight:800;letter-spacing:-12px;line-height:1;opacity:0.15;">
+                    404
+                </p>
+
+
+            </div>
+
+            <!-- Teks -->
+            <div class="mb-10">
+                <h1 class="text-3xl font-bold text-white mb-4 leading-tight">
+                    Halaman Tidak Ditemukan
+                </h1>
+                <p class="text-blue-300 text-base leading-relaxed max-w-md mx-auto">
+                    Halaman yang Anda cari tidak tersedia atau telah dipindahkan
+                </p>
+            </div>
+
+            <!-- Divider -->
+            <div class="flex justify-center mb-12">
+                <div class="w-20 h-[2px] bg-white"></div>
+            </div>
+            <!-- CTA kembali -->
+            <a href="/"
+                class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded transition text-sm">
+                <svg width="20" height="20"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+                Kembali ke Beranda
+            </a>
+            <div class="mt-10">
+                <p class="text-white text-xs tracking-wide opacity-80">
+                    © <?= date('Y') ?> BALIPROV-CSIRT
+                </p>
+            </div>
+
+
+        </div>
+    </main>
+
+
 </body>
+
 </html>
